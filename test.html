@@ -1,0 +1,862 @@
+<html lang="cz"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard – ProCup</title>
+    <meta name="description" content="ProCup – Competitive gaming platform. Turnaje, 1v1 Bot challenge a marketplace.">
+    <link rel="icon" href="/assets/img/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-left">
+            <a href="/" class="nav-logo">PRO<span>CUP</span></a>
+            <div class="nav-links">
+                <a href="/bot" class="nav-link ">Bot turnaje</a>
+                <a href="/cases" class="nav-link ">Cases</a>
+                <a href="/subscription" class="nav-link ">Předplatné</a>
+                <a href="/skinchanger" class="nav-link ">Skinchanger</a>
+                                    <a href="/inventory" class="nav-link ">Inventář</a>
+                            </div>
+        </div>
+        <div class="nav-right">
+            <div class="lang-dropdown">
+                <button class="lang-current" type="button">🌐</button>
+                <div class="lang-menu">
+                    <a href="?lang=cz" title="Česky">🇨🇿</a>
+                    <a href="?lang=eng" title="English">🇬🇧</a>
+                    <a href="?lang=rus" title="Русский">🇷🇺</a>
+                </div>
+            </div>
+                            <a href="/deposit" class="wallet-pill" title="Aktivní finance">
+                    💰 0.05 EUR
+                </a>
+                <div class="nav-user">
+                    <a href="/dashboard" class="user-info">
+                                                    <img src="https://avatars.steamstatic.com/111dffd14a0ef80d1bad7fb52670a9559eda21cd_medium.jpg" alt="John_sift_CS2.ME" class="user-avatar">
+                                                <span class="user-name">John_sift_CS2.ME</span>
+                    </a>
+                    <a href="/auth/logout" class="btn-logout" title="Odhlásit">⏻</a>
+                </div>
+                    </div>
+    </div>
+</nav>
+
+
+<main class="main-content">
+    <section class="section page-hero"><div class="container"><h1>Dashboard</h1><p class="page-subtitle">Rychlý přehled, odměny a denní case.</p></div></section>
+<section class="section"><div class="container dashboard-layout">
+<aside class="dashboard-side">
+    <div class="rules-card">
+        <h3>Rychlý přehled</h3>
+        <div class="xp-ring" style="--p:5; --xp-fill: #22c55e;">
+            <span>LVL 1</span>
+        </div>
+        <div class="overview-cards">
+            <div class="overview-card"><small>👤 Uživatel</small><strong>John_sift_CS2.ME</strong></div>
+            <div class="overview-card"><small>⚡ XP</small><strong>50</strong></div>
+            <div class="overview-card"><small>💰 Aktivní finance</small><strong>€0.05</strong></div>
+            <div class="overview-card"><small>🏆 W/L</small><strong>0 / 0</strong></div>
+        </div>
+    </div>
+    <div class="bot-form-card">
+        <h3>Propojení profilu</h3>
+        <form id="dash-settings-form">
+            <div class="form-group"><label>Steam Trade Link</label><input name="trade_link" value=""></div>
+            <div class="form-group"><label>Leetify URL</label><input name="leetify_url" value="" placeholder="https://leetify.com/app/profile/..."></div>
+            <div class="form-group"><label>Scope.gg URL</label><input name="scopegg_url" value="" placeholder="https://scope.gg/..."></div>
+            <button class="btn btn-primary btn-block" type="submit">Uložit propojení</button>
+        </form>
+        <div class="dash-card-divider" role="presentation"></div>
+        <h3 class="dash-subheading">Readme klíč</h3>
+        <p class="page-subtitle" style="margin-top:0;">Zadej kód z nákupu - po ověření se připíší peníze na účet (jednorázově).</p>
+        <div class="form-group readme-key-inline">
+            <label for="readme-key-input">Kód</label>
+            <div class="readme-key-row">
+                <input type="text" id="readme-key-input" name="readme_key_display" autocomplete="off" placeholder="XXXX-XXXX">
+                <button type="button" class="btn btn-primary" id="readme-key-redeem">Uplatnit</button>
+            </div>
+            <p class="readme-key-feedback" id="readme-key-feedback" hidden=""></p>
+        </div>
+    </div>
+</aside>
+
+<div class="dashboard-center">
+    <div class="rules-card">
+        <h3>Leveling rewards</h3>
+        <div id="reward-rail" class="reward-rail reward-rail-four">
+                            <article id="reward-level-1" class="reward-card reward-claimed">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+1" alt="Level 1 reward">
+                    <h4>Level 1</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Claimed</button>
+                                    </article>
+                            <article id="reward-level-2" class="reward-card reward-upcoming">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+2" alt="Level 2 reward">
+                    <h4>Level 2</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-3" class="reward-card reward-upcoming">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+3" alt="Level 3 reward">
+                    <h4>Level 3</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-4" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+4" alt="Level 4 reward">
+                    <h4>Level 4</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-5" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+5" alt="Level 5 reward">
+                    <h4>Level 5</h4>
+                    <p>Wallet bonus €0.20</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-6" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+6" alt="Level 6 reward">
+                    <h4>Level 6</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-7" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+7" alt="Level 7 reward">
+                    <h4>Level 7</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-8" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+8" alt="Level 8 reward">
+                    <h4>Level 8</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-9" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+9" alt="Level 9 reward">
+                    <h4>Level 9</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-10" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+10" alt="Level 10 reward">
+                    <h4>Level 10</h4>
+                    <p>Wallet bonus €0.10</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-11" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+11" alt="Level 11 reward">
+                    <h4>Level 11</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-12" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+12" alt="Level 12 reward">
+                    <h4>Level 12</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-13" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+13" alt="Level 13 reward">
+                    <h4>Level 13</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-14" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+14" alt="Level 14 reward">
+                    <h4>Level 14</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-15" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+15" alt="Level 15 reward">
+                    <h4>Level 15</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-16" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+16" alt="Level 16 reward">
+                    <h4>Level 16</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-17" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+17" alt="Level 17 reward">
+                    <h4>Level 17</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-18" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+18" alt="Level 18 reward">
+                    <h4>Level 18</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-19" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+19" alt="Level 19 reward">
+                    <h4>Level 19</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-20" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+20" alt="Level 20 reward">
+                    <h4>Level 20</h4>
+                    <p>Wallet bonus €0.28</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-21" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+21" alt="Level 21 reward">
+                    <h4>Level 21</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-22" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+22" alt="Level 22 reward">
+                    <h4>Level 22</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-23" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+23" alt="Level 23 reward">
+                    <h4>Level 23</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-24" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+24" alt="Level 24 reward">
+                    <h4>Level 24</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-25" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+25" alt="Level 25 reward">
+                    <h4>Level 25</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-26" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+26" alt="Level 26 reward">
+                    <h4>Level 26</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-27" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+27" alt="Level 27 reward">
+                    <h4>Level 27</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-28" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+28" alt="Level 28 reward">
+                    <h4>Level 28</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-29" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+29" alt="Level 29 reward">
+                    <h4>Level 29</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-30" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+30" alt="Level 30 reward">
+                    <h4>Level 30</h4>
+                    <p>Wallet bonus €0.45</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-31" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+31" alt="Level 31 reward">
+                    <h4>Level 31</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-32" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+32" alt="Level 32 reward">
+                    <h4>Level 32</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-33" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+33" alt="Level 33 reward">
+                    <h4>Level 33</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-34" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+34" alt="Level 34 reward">
+                    <h4>Level 34</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-35" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+35" alt="Level 35 reward">
+                    <h4>Level 35</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-36" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+36" alt="Level 36 reward">
+                    <h4>Level 36</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-37" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+37" alt="Level 37 reward">
+                    <h4>Level 37</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-38" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+38" alt="Level 38 reward">
+                    <h4>Level 38</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-39" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+39" alt="Level 39 reward">
+                    <h4>Level 39</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-40" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+40" alt="Level 40 reward">
+                    <h4>Level 40</h4>
+                    <p>Wallet bonus €0.63</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-41" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+41" alt="Level 41 reward">
+                    <h4>Level 41</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-42" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+42" alt="Level 42 reward">
+                    <h4>Level 42</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-43" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+43" alt="Level 43 reward">
+                    <h4>Level 43</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-44" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+44" alt="Level 44 reward">
+                    <h4>Level 44</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-45" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+45" alt="Level 45 reward">
+                    <h4>Level 45</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-46" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+46" alt="Level 46 reward">
+                    <h4>Level 46</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-47" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+47" alt="Level 47 reward">
+                    <h4>Level 47</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-48" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+48" alt="Level 48 reward">
+                    <h4>Level 48</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-49" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+49" alt="Level 49 reward">
+                    <h4>Level 49</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-50" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+50" alt="Level 50 reward">
+                    <h4>Level 50</h4>
+                    <p>Wallet bonus €0.80</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-51" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+51" alt="Level 51 reward">
+                    <h4>Level 51</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-52" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+52" alt="Level 52 reward">
+                    <h4>Level 52</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-53" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+53" alt="Level 53 reward">
+                    <h4>Level 53</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-54" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+54" alt="Level 54 reward">
+                    <h4>Level 54</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-55" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+55" alt="Level 55 reward">
+                    <h4>Level 55</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-56" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+56" alt="Level 56 reward">
+                    <h4>Level 56</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-57" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+57" alt="Level 57 reward">
+                    <h4>Level 57</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-58" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+58" alt="Level 58 reward">
+                    <h4>Level 58</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-59" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+59" alt="Level 59 reward">
+                    <h4>Level 59</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-60" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+60" alt="Level 60 reward">
+                    <h4>Level 60</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-61" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+61" alt="Level 61 reward">
+                    <h4>Level 61</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-62" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+62" alt="Level 62 reward">
+                    <h4>Level 62</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-63" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+63" alt="Level 63 reward">
+                    <h4>Level 63</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-64" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+64" alt="Level 64 reward">
+                    <h4>Level 64</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-65" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+65" alt="Level 65 reward">
+                    <h4>Level 65</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-66" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+66" alt="Level 66 reward">
+                    <h4>Level 66</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-67" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+67" alt="Level 67 reward">
+                    <h4>Level 67</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-68" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+68" alt="Level 68 reward">
+                    <h4>Level 68</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-69" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+69" alt="Level 69 reward">
+                    <h4>Level 69</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-70" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+70" alt="Level 70 reward">
+                    <h4>Level 70</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-71" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+71" alt="Level 71 reward">
+                    <h4>Level 71</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-72" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+72" alt="Level 72 reward">
+                    <h4>Level 72</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-73" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+73" alt="Level 73 reward">
+                    <h4>Level 73</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-74" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+74" alt="Level 74 reward">
+                    <h4>Level 74</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-75" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+75" alt="Level 75 reward">
+                    <h4>Level 75</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-76" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+76" alt="Level 76 reward">
+                    <h4>Level 76</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-77" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+77" alt="Level 77 reward">
+                    <h4>Level 77</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-78" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+78" alt="Level 78 reward">
+                    <h4>Level 78</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-79" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+79" alt="Level 79 reward">
+                    <h4>Level 79</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-80" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+80" alt="Level 80 reward">
+                    <h4>Level 80</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-81" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+81" alt="Level 81 reward">
+                    <h4>Level 81</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-82" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+82" alt="Level 82 reward">
+                    <h4>Level 82</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-83" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+83" alt="Level 83 reward">
+                    <h4>Level 83</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-84" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+84" alt="Level 84 reward">
+                    <h4>Level 84</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-85" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+85" alt="Level 85 reward">
+                    <h4>Level 85</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-86" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+86" alt="Level 86 reward">
+                    <h4>Level 86</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-87" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+87" alt="Level 87 reward">
+                    <h4>Level 87</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-88" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+88" alt="Level 88 reward">
+                    <h4>Level 88</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-89" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+89" alt="Level 89 reward">
+                    <h4>Level 89</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-90" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+90" alt="Level 90 reward">
+                    <h4>Level 90</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-91" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+91" alt="Level 91 reward">
+                    <h4>Level 91</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-92" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+92" alt="Level 92 reward">
+                    <h4>Level 92</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-93" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+93" alt="Level 93 reward">
+                    <h4>Level 93</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-94" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+94" alt="Level 94 reward">
+                    <h4>Level 94</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-95" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+95" alt="Level 95 reward">
+                    <h4>Level 95</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-96" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+96" alt="Level 96 reward">
+                    <h4>Level 96</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-97" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+97" alt="Level 97 reward">
+                    <h4>Level 97</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-98" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+98" alt="Level 98 reward">
+                    <h4>Level 98</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-99" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+99" alt="Level 99 reward">
+                    <h4>Level 99</h4>
+                    <p>Wallet bonus €0.05</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                            <article id="reward-level-100" class="reward-card reward-locked">
+                    <img src="https://placehold.co/420x240/10234a/9fd4ff?text=Level+100" alt="Level 100 reward">
+                    <h4>Level 100</h4>
+                    <p>Wallet bonus €1.00</p>
+                                            <button class="btn btn-glass" disabled="">Locked</button>
+                                    </article>
+                    </div>
+    </div>
+
+    <div class="rules-card">
+        <h3>Tvoje daily case</h3>
+        <div class="reward-rail">
+                                                <article class="reward-card ">
+                <img src="https://placehold.co/420x240/132b58/a5d8ff?text=WOOD%20Daily%20Case" alt="WOOD Daily Case">
+                <h4>WOOD Daily Case</h4>
+                <p>Kategorie: free | Unlock LVL 1</p>
+                                    <a class="btn btn-primary" href="/case-detail/1">Otevřít</a>
+                            </article>
+                                                <article class="reward-card reward-card-locked">
+                <img src="https://placehold.co/420x240/132b58/a5d8ff?text=SILVER%20Daily%20Case" alt="SILVER Daily Case">
+                <h4>SILVER Daily Case</h4>
+                <p>Kategorie: free | Unlock LVL 30</p>
+                                    <button class="btn btn-glass" disabled="">🔒 Zamčeno</button>
+                            </article>
+                                                <article class="reward-card reward-card-locked">
+                <img src="https://placehold.co/420x240/132b58/a5d8ff?text=GOLD%20Daily%20Case" alt="GOLD Daily Case">
+                <h4>GOLD Daily Case</h4>
+                <p>Kategorie: free | Unlock LVL 60</p>
+                                    <button class="btn btn-glass" disabled="">🔒 Zamčeno</button>
+                            </article>
+                                </div>
+    </div>
+
+    <div class="rules-card">
+        <h3>Historie zápasů proti botovi</h3>
+        <div class="reward-table">
+            <div class="reward-row reward-head">
+                <span>Datum</span><span>Typ</span><span>Mapa / score</span><span>Výsledek</span>
+            </div>
+                    </div>
+    </div>
+</div>
+
+<script>
+const I18N_DASH = {"save_failed":"Uložení selhalo","saved_ok":"Nastavení uloženo","enter_code":"Zadej kód.","code_invalid":"Kód není platný.","code_ok":"Klíč uplatněn - na účet připsáno €{amount}.","conn_error":"Chyba spojení, zkus to znovu.","claim_failed":"Claim selhal","claimed":"Claimed"};
+
+document.getElementById('dash-settings-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const res = await fetch('/api/dashboard/settings', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (!data.success) return alert(I18N_DASH.save_failed);
+    alert(I18N_DASH.saved_ok);
+    location.reload();
+});
+
+(function () {
+    const input = document.getElementById('readme-key-input');
+    const btn = document.getElementById('readme-key-redeem');
+    const fb = document.getElementById('readme-key-feedback');
+    if (!input || !btn || !fb) return;
+
+    function showMsg(text, ok) {
+        fb.hidden = false;
+        fb.textContent = text;
+        fb.classList.toggle('readme-key-feedback--ok', !!ok);
+        fb.classList.toggle('readme-key-feedback--err', !ok);
+    }
+
+    btn.addEventListener('click', async () => {
+        const code = (input.value || '').trim();
+        if (!code) {
+            showMsg(I18N_DASH.enter_code, false);
+            return;
+        }
+        btn.disabled = true;
+        fb.hidden = true;
+        const fd = new FormData();
+        fd.append('readme_key', code);
+        try {
+            const res = await fetch('/api/dashboard/redeem-readme-key', { method: 'POST', body: fd });
+            const data = await res.json();
+            if (!data.success) {
+                showMsg(data.error || I18N_DASH.code_invalid, false);
+                return;
+            }
+            const amt = typeof data.credited === 'number' ? data.credited.toFixed(2) : String(data.credited ?? '');
+            showMsg(I18N_DASH.code_ok.replace('{amount}', amt), true);
+            input.value = '';
+            setTimeout(() => location.reload(), 1200);
+        } catch (e) {
+            showMsg(I18N_DASH.conn_error, false);
+        } finally {
+            btn.disabled = false;
+        }
+    });
+})();
+
+document.querySelectorAll('.claim-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+        const level = Number(btn.dataset.level || 0);
+        if (!level) return;
+        const fd = new FormData();
+        fd.append('level', String(level));
+        const res = await fetch('/api/dashboard/claim-level', { method: 'POST', body: fd });
+        const data = await res.json();
+        if (!data.success) return alert(data.error || I18N_DASH.claim_failed);
+        btn.disabled = true;
+        btn.textContent = I18N_DASH.claimed;
+        const card = document.getElementById('reward-level-' + level);
+        if (card) card.classList.add('reward-claimed');
+        const nextLevel = Number(data.next_level || 0);
+        if (nextLevel > 0) {
+            const nextCard = document.getElementById('reward-level-' + nextLevel);
+            nextCard?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+    });
+});
+
+</script>
+</div></section>
+</main>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <span class="footer-logo">PRO<span>CUP</span></span>
+            <p class="footer-tagline">Nejlepší česká esport platforma</p>
+            <nav class="footer-social" aria-label="Sociální sítě">
+                <a href="https://vk.com/" class="footer-social-btn" target="_blank" rel="noopener" title="VK" aria-label="VK">
+                    <img src="/assets/img/social/vk.png" alt="" width="20" height="20" loading="lazy">
+                </a>
+                <a href="https://www.instagram.com/" class="footer-social-btn" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+                    <img src="/assets/img/social/instagram.png" alt="" width="20" height="20" loading="lazy">
+                </a>
+                <a href="https://steamcommunity.com/" class="footer-social-btn" target="_blank" rel="noopener" title="Steam" aria-label="Steam">
+                    <img src="/assets/img/social/steam.png" alt="" width="20" height="20" loading="lazy">
+                </a>
+                <a href="https://www.youtube.com/" class="footer-social-btn" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube">
+                    <img src="/assets/img/social/youtube.png" alt="" width="20" height="20" loading="lazy">
+                </a>
+                <a href="https://discord.gg/" class="footer-social-btn" target="_blank" rel="noopener" title="Discord" aria-label="Discord">
+                    <img src="/assets/img/social/discord.png" alt="" width="20" height="20" loading="lazy">
+                </a>
+            </nav>
+            <div class="footer-tp-wrap">
+                <a href="https://www.trustpilot.com/" target="_blank" rel="noopener" class="footer-tp-link" aria-label="Trustpilot — hodnocení profilu">
+                    <img src="/assets/img/social/trustpilot-mark.png" alt="" class="footer-tp-mark" width="49" height="49" loading="lazy">
+                    <span class="footer-tp-word">Trustpilot</span>
+                </a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Platforma</h4>
+                <a href="/bot">Bot Turnaje</a>
+                <a href="/cases">Cases</a>
+                <a href="/subscription">Předplatné</a>
+            </div>
+            <div class="footer-col">
+                <h4>Právní</h4>
+                <a href="/terms">Podmínky použití</a>
+                <a href="/gdpr">GDPR / Soukromí</a>
+                <a href="/faq">FAQ</a>
+                <a href="/contact">Kontakt</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2026 ProCup. Všechna práva vyhrazena.</span>
+        <span>ProCup není spojen se společností Valve Corporation nebo Steam.</span>
+    </div>
+</footer>
+
+<script src="/assets/js/main.js"></script>
+
+
+</body></html>
