@@ -74,7 +74,7 @@ CFLAGS  := \
     -Wextra \
     -D__PS4__ \
     -D_BSD_SOURCE \
-    -DORBIS_STORE_DATA_PATH=\"/user/app/NPXS39041/\"
+-DORBIS_STORE_DATA_PATH=\"/user/app/ORBS00001/\"
 
 LDFLAGS := \
     -m elf_x86_64 \
